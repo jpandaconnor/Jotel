@@ -1,12 +1,14 @@
 #include "databaseinput.h"
 #include "ui_databaseinput.h"
 #include "databaseconnection.h"
+#include "create_login_root.h"
 #include "tableverify.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QApplication>
 #include <QCoreApplication>
+#include <QSqlQuery>
 
 #include <QDebug>
 
@@ -87,10 +89,32 @@ void DatabaseInput::checkInput() {
 
         dbconn->openConnection(ts_ip, ts_dbname, ts_user, ts_password, ui->portLineEdit->text().toInt());
 
-        if(info == QMessageBox::Ok) {
-            QMessageBox::StandardButton adminsetup = QMessageBox::question(this, "Enter admin setup",
-                                                                           tr("No admin account found! Setup admin account now?"), QMessageBox::Yes | QMessageBox::No);
+        TableVerify* tablev = new TableVerify();
+        tablev->checkTables();
 
+        QSqlQuery query("SELECT username FROM jotel_users WHERE username = 'admin'");
+
+        if(info == QMessageBox::Ok) {
+            if(!query.next()) {
+                QMessageBox::StandardButton adminsetup = QMessageBox::question(this, "Enter admin setup",
+                                                                               tr("No admin account found! Setup admin account now?"), QMessageBox::Yes | QMessageBox::No);
+                if(adminsetup == QMessageBox::Yes) {
+                    qDebug() << "Woop";
+                    dbconn->openConnection(ts_ip, ts_dbname, ts_user, ts_password, ui->portLineEdit->text().toInt());
+                    Create_Login_root* clr = new Create_Login_root();
+                    this->destroy();
+                    clr->setModal(true);
+                    clr->show();
+                } else {
+                    QMessageBox::StandardButton nadmin = QMessageBox::warning(this, "Error", tr("No admin account found. Open Jotel again to set the admin account up"), QMessageBox::Ok);
+
+                    if(nadmin == QMessageBox::Ok) {
+                        QApplication::quit();
+                    }
+                }
+            } else {
+                // Admin account found. Logging in here
+            }
         }
     } else {
         QMessageBox::warning(this, "Unable to connect", tr("Unable to connect you to the database. Please try again"), QMessageBox::Ok);

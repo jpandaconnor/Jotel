@@ -14,9 +14,11 @@ signals:
 
 public slots:
 
+public:
+     void checkTables();
+
 private:
     void checkAdmin();
-    void checkTables();
 };
 
 #endif // TABLEVERIFY_H

@@ -34,7 +34,7 @@ void TableVerify::checkTables() {
             }
         }
 
-        checkAdmin();
+        // checkAdmin();
     }
 }
 
@@ -45,10 +45,10 @@ void TableVerify::checkAdmin() {
         QSqlQuery query;
         if(query.exec("SELECT username FROM jotel_users WHERE username = 'admin'")) {
             if(!query.next()) {
-                QMessageBox::StandardButton adminsetup = QMessageBox::question(this, "Enter admin setup",
-                                                                               tr("No admin account found! Setup admin account now?"), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox::StandardButton adminsetup = QMessageBox::warning(this, "No admin account",
+                                                                               tr("You must create a new admin account to continue"), QMessageBox::Ok);
 
-                if(adminsetup == QMessageBox::Yes) {
+                if(adminsetup == QMessageBox::Ok) {
 
                 } else {
                     // Cancel

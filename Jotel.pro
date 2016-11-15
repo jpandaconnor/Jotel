@@ -16,12 +16,17 @@ SOURCES += main.cpp\
         initialwindow.cpp \
     databaseinput.cpp \
     databaseconnection.cpp \
-    tableverify.cpp
+    tableverify.cpp \
+    create_login_root.cpp \
+    passwordcrypto.cpp
 
 HEADERS  += initialwindow.h \
     databaseinput.h \
     databaseconnection.h \
-    tableverify.h
+    tableverify.h \
+    create_login_root.h \
+    passwordcrypto.h
 
 FORMS    += initialwindow.ui \
-    databaseinput.ui
+    databaseinput.ui \
+    create_login_root.ui

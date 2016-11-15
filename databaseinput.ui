@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
+    <width>460</width>
     <height>270</height>
    </rect>
   </property>
@@ -61,7 +61,7 @@ enter your database details below</string>
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -163,9 +163,8 @@ enter your database details below</string>
     </item>
    </layout>
   </widget>
+  <zorder>layoutWidget</zorder>
   <zorder>verticalLayoutWidget</zorder>
-  <zorder>label</zorder>
-  <zorder>formLayoutWidget</zorder>
   <zorder>buttonBox</zorder>
  </widget>
  <resources/>
