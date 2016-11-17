@@ -18,15 +18,18 @@ SOURCES += main.cpp\
     databaseconnection.cpp \
     tableverify.cpp \
     create_login_root.cpp \
-    passwordcrypto.cpp
+    passwordcrypto.cpp \
+    roomfeatures/roomfeatures_add.cpp
 
 HEADERS  += initialwindow.h \
     databaseinput.h \
     databaseconnection.h \
     tableverify.h \
     create_login_root.h \
-    passwordcrypto.h
+    passwordcrypto.h \
+    roomfeatures/roomfeatures_add.h
 
 FORMS    += initialwindow.ui \
     databaseinput.ui \
-    create_login_root.ui
+    create_login_root.ui \
+    roomfeatures/roomfeatures_add.ui

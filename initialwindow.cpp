@@ -2,6 +2,8 @@
 #include "ui_initialwindow.h"
 #include "databaseinput.h"
 
+#include "roomfeatures/roomfeatures_add.h"
+
 #include <QApplication>
 #include <QSettings>
 
@@ -41,4 +43,9 @@ InitialWindow::~InitialWindow()
 {
     delete ui;
     delete file_setting_database;
+}
+
+void InitialWindow::openRoomFeatures_Add() {
+    RoomFeatures_Add* rma = new RoomFeatures_Add();
+    rma->open();
 }

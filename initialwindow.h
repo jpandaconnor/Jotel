@@ -17,6 +17,11 @@ public:
     explicit InitialWindow(QWidget *parent = 0);
     ~InitialWindow();
 
+    // Opening room features stuff here
+
+public slots:
+     void openRoomFeatures_Add();
+
 private:
     Ui::InitialWindow *ui;
 

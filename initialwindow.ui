@@ -23,6 +23,48 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuJotel">
+    <property name="title">
+     <string>Jotel</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionSignout"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuQuery">
+    <property name="title">
+     <string>Query</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHousekeeping">
+    <property name="title">
+     <string>Housekeeping</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAdmin">
+    <property name="title">
+     <string>Admin</string>
+    </property>
+    <widget class="QMenu" name="menuRoom_Features">
+     <property name="title">
+      <string>Room Features</string>
+     </property>
+     <addaction name="actionAdd_Room_Feature"/>
+     <addaction name="actionEdit_Room_Feature"/>
+     <addaction name="actionDelete_Room_Feature"/>
+    </widget>
+    <addaction name="menuRoom_Features"/>
+   </widget>
+   <addaction name="menuJotel"/>
+   <addaction name="menuHousekeeping"/>
+   <addaction name="menuQuery"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuAdmin"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -33,8 +75,53 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionSignout">
+   <property name="text">
+    <string>Log out</string>
+   </property>
+  </action>
+  <action name="actionAdd_Room_Feature">
+   <property name="text">
+    <string>Add Room Feature</string>
+   </property>
+  </action>
+  <action name="actionEdit_Room_Feature">
+   <property name="text">
+    <string>Edit Room Feature</string>
+   </property>
+  </action>
+  <action name="actionDelete_Room_Feature">
+   <property name="text">
+    <string>Delete Room Feature</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionAdd_Room_Feature</sender>
+   <signal>triggered()</signal>
+   <receiver>InitialWindow</receiver>
+   <slot>openRoomFeatures_Add()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openRoomFeatures_Add()</slot>
+ </slots>
 </ui>
