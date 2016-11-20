@@ -41,6 +41,43 @@ void TableVerify::checkTables() {
             }
         }
 
+        if(!db.tables().contains("jotel_floors")) {
+            QSqlQuery query;
+            if(!query.exec("CREATE TABLE jotel_floors(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, floor INT);")) {
+                QMessageBox::critical(this, "Error", QString("Database table '%1' creation failed. Error code: " + QString::number(query.lastError().number())).arg("jotel_floors"), QMessageBox::Ok);
+                QApplication::quit();
+                return;
+            }
+        }
+
+        if(!db.tables().contains("jotel_sections")) {
+            QSqlQuery query;
+            if(!query.exec("CREATE TABLE jotel_sections(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, section INT);")) {
+                QMessageBox::critical(this, "Error", QString("Database table '%1' creation failed. Error code: " + QString::number(query.lastError().number())).arg("jotel_sections"), QMessageBox::Ok);
+                QApplication::quit();
+                return;
+            }
+        }
+
+        if(!db.tables().contains("jotel_rooms")) {
+            QSqlQuery query;
+            if(!query.exec("CREATE TABLE jotel_rooms(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, no INT, floor INT, section INT, features VARCHAR(1024), room_type INT);")) {
+                QMessageBox::critical(this, "Error", QString("Database table '%1' creation failed. Error code: " + QString::number(query.lastError().number())).arg("jotel_rooms"), QMessageBox::Ok);
+                QApplication::quit();
+                return;
+            }
+        }
+
+        if(!db.tables().contains("jotel_roomtypes")) {
+            qDebug() << "Not calling in here";
+            QSqlQuery query;
+            if(!query.exec("CREATE TABLE jotel_roomtypes(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name TEXT, description TEXT);")) {
+                QMessageBox::critical(this, "Error", QString("Database table '%1' creation failed. Error code: " + QString::number(query.lastError().number())).arg("jotel_roomtypes"), QMessageBox::Ok);
+                QApplication::quit();
+                return;
+            }
+        }
+
         db.close();
 
         // checkAdmin();

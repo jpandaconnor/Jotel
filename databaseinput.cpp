@@ -2,6 +2,7 @@
 #include "ui_databaseinput.h"
 #include "databaseconnection.h"
 #include "create_login_root.h"
+#include "admin/room_editor.h"
 #include "tableverify.h"
 
 #include <QCloseEvent>
@@ -138,6 +139,7 @@ void DatabaseInput::checkInput() {
                 if(!adexists) {
                     qDebug() << "Fuck not in here oops";
                 }
+
                 // Admin account found. Logging in here
             }
         }

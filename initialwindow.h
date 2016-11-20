@@ -23,6 +23,9 @@ public slots:
      void openRoomFeatures_Add();
      void openRoomFeatures_Edit();
 
+private slots:
+     void on_actionRoom_Editor_triggered();
+
 private:
     Ui::InitialWindow *ui;
 

@@ -2,6 +2,9 @@
 
 #include <QString>
 #include <QSqlDatabase>
+#include <QSqlError>
+#include <QDebug>
+#include <QSqlDriver>
 
 DatabaseConnection::DatabaseConnection()
 {
@@ -38,7 +41,6 @@ bool DatabaseConnection::isConnectableDatabase(QString address, QString dbname, 
     testdb.setPort(port);
 
     succ = testdb.open();
-
     testdb.close();
 
     return succ;

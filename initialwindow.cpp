@@ -2,8 +2,10 @@
 #include "ui_initialwindow.h"
 #include "databaseinput.h"
 
-#include "roomfeatures/roomfeatures_add.h"
-#include "roomfeatures/roomfeatures_edit.h"
+#include "admin/roomfeatures_add.h"
+#include "admin/roomfeatures_edit.h"
+
+#include "admin/room_editor.h"
 
 #include <QApplication>
 #include <QSettings>
@@ -12,6 +14,8 @@
 #include <QSqlQuery>
 
 #include <QMessageBox>
+
+#include <QDebug>
 
 /*
  *
@@ -43,6 +47,8 @@ InitialWindow::InitialWindow(QWidget *parent) :
     } else {
         // Get all the information here and do stuf
     }
+
+    qDebug() << "Inaudible scremaing";
 }
 
 InitialWindow::~InitialWindow()
@@ -57,16 +63,12 @@ void InitialWindow::openRoomFeatures_Add() {
 }
 
 void InitialWindow::openRoomFeatures_Edit() {
-    QSqlDatabase db = QSqlDatabase::database();
-    QSqlQuery query(db);
-
-    query.exec("SELECT name FROM jotel_features");
-
-    if(!query.next()) {
-        QMessageBox::warning(this, "No room features", tr("There are no room features"), QMessageBox::Ok);
-        return;
-    }
-
     RoomFeatures_Edit* rme = new RoomFeatures_Edit();
     rme->open();
+}
+
+void InitialWindow::on_actionRoom_Editor_triggered()
+{
+    Room_Editor* re = new Room_Editor();
+    re->open();
 }

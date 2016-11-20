@@ -58,7 +58,14 @@
      <addaction name="actionEdit_Room_Feature"/>
      <addaction name="actionDelete_Room_Feature"/>
     </widget>
+    <widget class="QMenu" name="menuRooms">
+     <property name="title">
+      <string>Rooms</string>
+     </property>
+     <addaction name="actionRoom_Editor"/>
+    </widget>
     <addaction name="menuRoom_Features"/>
+    <addaction name="menuRooms"/>
    </widget>
    <addaction name="menuJotel"/>
    <addaction name="menuHousekeeping"/>
@@ -98,6 +105,11 @@
   <action name="actionDelete_Room_Feature">
    <property name="text">
     <string>Delete Room Feature</string>
+   </property>
+  </action>
+  <action name="actionRoom_Editor">
+   <property name="text">
+    <string>Room Editor</string>
    </property>
   </action>
  </widget>
