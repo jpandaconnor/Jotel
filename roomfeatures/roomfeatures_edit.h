@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QListWidgetItem>
+#include <QString>
 
 namespace Ui {
 class RoomFeatures_Edit;

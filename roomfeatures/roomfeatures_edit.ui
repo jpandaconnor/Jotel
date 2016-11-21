@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>311</width>
-     <height>461</height>
+     <height>421</height>
     </rect>
    </property>
   </widget>
@@ -39,8 +39,8 @@
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>320</y>
+     <x>10</x>
+     <y>440</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -52,8 +52,8 @@
   <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>320</y>
+     <x>100</x>
+     <y>440</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -106,25 +106,9 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>rmfList</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>RoomFeatures_Edit</receiver>
-   <slot>displayItemInformation(QListWidgetItem*)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>165</x>
-     <y>240</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>319</x>
-     <y>239</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>displayItemInformation(QListWidgetItem*)</slot>
+  <slot>displayItemChanged(QString)</slot>
  </slots>
 </ui>
