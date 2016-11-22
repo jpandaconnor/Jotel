@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     tableverify.cpp \
     create_login_root.cpp \
     passwordcrypto.cpp \
-    roomfeatures/roomfeatures_add.cpp
+    roomfeatures/roomfeatures_add.cpp \
+    roomfeatures/roomfeatures_edit.cpp
 
 HEADERS  += initialwindow.h \
     databaseinput.h \
@@ -27,9 +28,11 @@ HEADERS  += initialwindow.h \
     tableverify.h \
     create_login_root.h \
     passwordcrypto.h \
-    roomfeatures/roomfeatures_add.h
+    roomfeatures/roomfeatures_add.h \
+    roomfeatures/roomfeatures_edit.h
 
 FORMS    += initialwindow.ui \
     databaseinput.ui \
     create_login_root.ui \
-    roomfeatures/roomfeatures_add.ui
+    roomfeatures/roomfeatures_add.ui \
+    roomfeatures/roomfeatures_edit.ui

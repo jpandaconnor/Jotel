@@ -120,6 +120,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionEdit_Room_Feature</sender>
+   <signal>triggered()</signal>
+   <receiver>InitialWindow</receiver>
+   <slot>openRoomFeatures_Edit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>openRoomFeatures_Add()</slot>

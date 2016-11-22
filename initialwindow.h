@@ -21,6 +21,7 @@ public:
 
 public slots:
      void openRoomFeatures_Add();
+     void openRoomFeatures_Edit();
 
 private:
     Ui::InitialWindow *ui;

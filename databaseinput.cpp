@@ -92,14 +92,17 @@ void DatabaseInput::checkInput() {
         TableVerify* tablev = new TableVerify();
         tablev->checkTables();
 
-        QSqlQuery query("SELECT username FROM jotel_users WHERE username = 'admin'");
+        QSqlDatabase db = QSqlDatabase::database();
 
         if(info == QMessageBox::Ok) {
-            if(!query.next()) {
+
+            QSqlQuery query(db);
+            query.exec("SELECT username FROM jotel_users WHERE username = 'admin'");
+
+            if(!query.next()) { // If nothing is found in the database
                 QMessageBox::StandardButton adminsetup = QMessageBox::question(this, "Enter admin setup",
                                                                                tr("No admin account found! Setup admin account now?"), QMessageBox::Yes | QMessageBox::No);
                 if(adminsetup == QMessageBox::Yes) {
-                    qDebug() << "Woop";
                     dbconn->openConnection(ts_ip, ts_dbname, ts_user, ts_password, ui->portLineEdit->text().toInt());
                     Create_Login_root* clr = new Create_Login_root();
                     this->destroy();
@@ -113,6 +116,28 @@ void DatabaseInput::checkInput() {
                     }
                 }
             } else {
+                /*
+                 *
+                 * I mean we really don't need this here because if there's no account
+                 * and you're forced to make an admin account, then how the hell can you
+                 * get to this point.
+                 *
+                 * Ah well, consumers do. Programmers do this thing called "Retard proofing"
+                 *
+                 */
+
+                bool adexists = false;
+
+                while(query.next()) {
+                    if(query.value(0).toString() == "admin") {
+                        adexists = true;
+                        break;
+                    }
+                }
+
+                if(!adexists) {
+                    qDebug() << "Fuck not in here oops";
+                }
                 // Admin account found. Logging in here
             }
         }

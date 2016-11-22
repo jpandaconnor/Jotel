@@ -3,9 +3,15 @@
 #include "databaseinput.h"
 
 #include "roomfeatures/roomfeatures_add.h"
+#include "roomfeatures/roomfeatures_edit.h"
 
 #include <QApplication>
 #include <QSettings>
+
+#include <QSqlDatabase>
+#include <QSqlQuery>
+
+#include <QMessageBox>
 
 /*
  *
@@ -48,4 +54,19 @@ InitialWindow::~InitialWindow()
 void InitialWindow::openRoomFeatures_Add() {
     RoomFeatures_Add* rma = new RoomFeatures_Add();
     rma->open();
+}
+
+void InitialWindow::openRoomFeatures_Edit() {
+    QSqlDatabase db = QSqlDatabase::database();
+    QSqlQuery query(db);
+
+    query.exec("SELECT name FROM jotel_features");
+
+    if(!query.next()) {
+        QMessageBox::warning(this, "No room features", tr("There are no room features"), QMessageBox::Ok);
+        return;
+    }
+
+    RoomFeatures_Edit* rme = new RoomFeatures_Edit();
+    rme->open();
 }

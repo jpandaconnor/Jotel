@@ -2,6 +2,7 @@
 #define ROOMFEATURES_ADD_H
 
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class RoomFeatures_Add;
