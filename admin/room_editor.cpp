@@ -1,15 +1,21 @@
 #include "room_editor.h"
 #include "ui_room_editor.h"
+#include "sql/csqlquerymodel.h"
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QInputDialog>
 #include <QTableWidgetItem>
 #include <QDebug>
+#include <QMap>
+#include <QSqlRecord>
 #include <QTreeWidgetItem>
 #include <QSqlQueryModel>
 #include <QMessageBox>
 #include <QModelIndex>
+#include <QSqlTableModel>
+#include <QTableView>
+#include <QStandardItemModel>
 
 Room_Editor::Room_Editor(QWidget *parent) :
     QDialog(parent),
@@ -24,16 +30,76 @@ Room_Editor::Room_Editor(QWidget *parent) :
 
     ui->roomList->setSortingEnabled(true);
 
-    QSqlQueryModel* modal = new QSqlQueryModel();
-    QSqlQuery query(db);
-    query.exec("SELECT id,name,description FROM jotel_rooms");
-    modal->setQuery(query);
-    modal->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    modal->setHeaderData(1, Qt::Horizontal, tr("Name"));
-    modal->setHeaderData(2, Qt::Horizontal, tr("Description"));
+    QStandardItemModel* model = new QStandardItemModel(this);
 
-    ui->roomList->setModel(modal);
+    QStringList headerList;
+
+    QSqlDatabase database = QSqlDatabase::database();
+    QSqlQuery query(database);
+    query.exec("SELECT * FROM jotel_rooms");
+
+    headerList << "ID" << "Room" << "Floor" << "Section" << "Features" << "Room Type";
+
+    model->setHorizontalHeaderLabels(headerList);
+    ui->roomList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    while(query.next()) {
+        for(int row = 0; row < query.size(); row++) { // For each room
+            int v = 0;
+            for(int col = 0; col < headerList.count(); col++) { // Each col, insert data into a new object
+                switch(col) {
+                case 4:
+                    QString featuresplit(query.value(v).toString());
+
+                    QStringList features = featuresplit.split('-');
+                    QString raw_features;
+
+                    for(QString s : features) {
+                        QSqlQuery s_query(db);
+                        s_query.exec(QString("SELECT name FROM jotel_features WHERE id = %1").arg(s.toInt()));
+
+                        while(s_query.next()) {
+                            if(raw_features.isEmpty()) {
+                                raw_features = raw_features + s_query.value(0).toString();
+                            } else {
+                                raw_features = raw_features + ", " + s_query.value(0).toString();
+                            }
+                        }
+                    }
+
+                    QStandardItem* item = new QStandardItem(QString(raw_features));
+                    model->setItem(row, col, item);
+                    break;
+                case 5:
+
+                    break;
+                default:
+                    QStandardItem* item = new QStandardItem(QString(query.value(v).toString()));
+                    model->setItem(row, col, item);
+                    break;
+                }
+                v++;
+            }
+        }
+    }
+
+    ui->roomList->setModel(model);
+    /*
+     * Remember the order is pretty much static here
+     *
+
+    /*
+     * Some other crap with need doing with the features here.
+     * Same for the room type. Just get the ID from the DB since it's a seperate system
+     */
+
+    // Working on this stuffs right here
+
+    // for(int i = 0; i < modal->rowCount(modal->index(0 )))
+
+    // Make one query selection what we need
     ui->roomList->setColumnHidden(0, true);
+
 
     /*
      *

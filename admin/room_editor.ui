@@ -210,7 +210,7 @@
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
-    <widget class="QTreeView" name="roomList">
+    <widget class="QTreeWidget" name="roomList">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -218,6 +218,9 @@
        <width>581</width>
        <height>192</height>
       </rect>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
      </property>
     </widget>
    </widget>

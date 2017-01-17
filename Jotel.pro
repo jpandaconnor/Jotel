@@ -15,7 +15,8 @@ SOURCES += main.cpp\
     passwordcrypto.cpp \
     admin/roomfeatures_add.cpp \
     admin/roomfeatures_edit.cpp \
-    admin/room_editor.cpp
+    admin/room_editor.cpp \
+    sql/csqlquerymodel.cpp
 
 HEADERS  += initialwindow.h \
     databaseinput.h \
@@ -25,7 +26,8 @@ HEADERS  += initialwindow.h \
     passwordcrypto.h \
     admin/roomfeatures_add.h \
     admin/roomfeatures_edit.h \
-    admin/room_editor.h
+    admin/room_editor.h \
+    sql/csqlquerymodel.h
 
 FORMS    += initialwindow.ui \
     databaseinput.ui \
